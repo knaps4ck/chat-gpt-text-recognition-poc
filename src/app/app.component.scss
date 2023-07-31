@@ -1,0 +1,22 @@
+.center-screen {
+  display: flex;
+  justify-content: center;
+}
+
+.transcriptionText {
+  padding: 20px;
+  border: 5px;
+}
+
+.interface {
+  margin: 100px;
+}
+
+input[type="file"] {
+  color: transparent;
+}
+
+.btn {
+  width: 150px;
+  margin-top: 5px;
+}

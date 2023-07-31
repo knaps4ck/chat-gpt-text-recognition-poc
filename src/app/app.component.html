@@ -1,0 +1,39 @@
+<div class="d-flex flex-column justify-content-center mt-5 interface">
+  <label for="prompt">Prompt: </label>
+  <input id="prompt" [(ngModel)]="promptText" type="text" />
+  <label class="mt-20" for="inputfile">Upload file: </label>
+  <input
+    *ngIf="!fileName.length"
+    id="inputfile"
+    (change)="onFileSelected($event)"
+    type="file"
+    accept=".txt"
+    title=" "
+  />
+  <span *ngIf="fileName.length"
+    >{{ fileName }}<i class="fa fa-close" (click)="onRemoveFile()" clickable></i
+  ></span>
+
+  <button
+    class="btn btn-primary"
+    [disabled]="!fileName.length"
+    (click)="onStartTranscribe()"
+  >
+    Start processing
+  </button>
+</div>
+
+<div
+  class="transcriptionText"
+  *ngIf="!transcriptionProcessing && fileName.length"
+>
+  <div
+    *ngFor="let item of items; let index = index"
+    [content]="item"
+    [searchTerms]="texts[index]"
+    plTextHighlight
+  ></div>
+</div>
+<div class="center-screen" *ngIf="transcriptionProcessing">
+  <i class="fa fa-spinner fa-spin fa-4x"></i>
+</div>

@@ -1,5 +1,4 @@
 node_modules
 .angular
 src/assets/.gitkeep
-src/favicon.ico
-src/environment/environment.ts
+dist/

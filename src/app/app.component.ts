@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
   }
 
   onStartTranscribe() {
+    this.texts = [];
     this.onFileSelected(this.event);
     this.preprocessTranscription(this.text);
     this.processTranscription();

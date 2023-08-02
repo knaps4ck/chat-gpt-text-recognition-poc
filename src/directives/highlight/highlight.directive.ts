@@ -60,8 +60,12 @@ export class HighlightDirective implements OnChanges {
 
     let content = this._content;
 
-    for (const searchTerm of this._searchTerms) {
+    for (let searchTerm of this._searchTerms) {
       this.final = "";
+
+      if (searchTerm.includes("$")) {
+        searchTerm = searchTerm.replace("$", "\\$");
+      }
 
       this.searchPattern = new RegExp(
         searchTerm.slice(1, searchTerm.length - 1).replace(/\.$/, ""),

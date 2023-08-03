@@ -67,14 +67,12 @@ export class HighlightDirective implements OnChanges {
         searchTerm = searchTerm.replace("$", "\\$");
       }
 
-      this.searchPattern = new RegExp(
-        searchTerm.slice(1, searchTerm.length - 1).replace(/\.$/, ""),
-        this.splitFlag
-      );
-      this.matchpattern = new RegExp(
-        searchTerm.slice(1, searchTerm.length - 1).replace(/\.$/, ""),
-        this.matchFlag
-      );
+      if (searchTerm[0] === '"') {
+        searchTerm = searchTerm.replace(/^"(.+)"$/, "$1").replace(/\.$/, "");
+      }
+
+      this.searchPattern = new RegExp(searchTerm, this.splitFlag);
+      this.matchpattern = new RegExp(searchTerm, this.matchFlag);
 
       this.separatedText = content.split(this.searchPattern);
       this.separatedSearchedText = content.match(this.matchpattern);

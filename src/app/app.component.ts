@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   brands: any = [];
   texts: any = [];
   text: string = "";
-  transcriptionProcessing = false;
+  transcriptionProcessing: boolean = false;
   items: string[] = [];
   fileName: string = "";
   event: any;
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
-  async ngOnInit(): Promise<void> {}
+  ngOnInit(): void {}
 
   onFileSelected(event: any) {
     this.event = event;
@@ -44,7 +44,9 @@ export class AppComponent implements OnInit {
 
   onStartTranscribe() {
     this.texts = [];
-    this.onFileSelected(this.event);
+    if (!this.fileName.length) {
+      this.onFileSelected(this.event);
+    }
     this.preprocessTranscription(this.text);
     this.processTranscription();
   }

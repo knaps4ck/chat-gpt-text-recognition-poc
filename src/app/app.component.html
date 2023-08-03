@@ -10,13 +10,19 @@
     accept=".txt"
     title=" "
   />
-  <span *ngIf="fileName.length"
-    >{{ fileName }}<i class="fa fa-close" (click)="onRemoveFile()" clickable></i
-  ></span>
+  <span *ngIf="fileName.length">
+    {{ fileName }}
+    <i
+      *ngIf="!transcriptionProcessing"
+      class="fa fa-close"
+      (click)="onRemoveFile()"
+      clickable
+    ></i>
+  </span>
 
   <button
     class="btn btn-primary"
-    [disabled]="!fileName.length"
+    [disabled]="!fileName.length || transcriptionProcessing"
     (click)="onStartTranscribe()"
   >
     Start processing
